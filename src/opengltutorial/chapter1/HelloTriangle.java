@@ -23,6 +23,7 @@ public class HelloTriangle extends TutorialProgram {
 		try {
 			Display.setDisplayMode(new DisplayMode(800,600));
 			Display.setResizable(true);
+			Display.setTitle("Hello Triangle!");
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
