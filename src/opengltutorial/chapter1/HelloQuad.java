@@ -28,11 +28,6 @@ public class HelloQuad extends TutorialProgram {
 			Display.setResizable(true);
 			Display.setTitle("Hello Quad!");
 			Display.create();
-			
-			glMatrixMode(GL_PROJECTION);
-			glLoadIdentity();
-			glOrtho(0, 600, 0, 600, 0, 1);
-			glMatrixMode(GL_MODELVIEW);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 			System.exit(0);
