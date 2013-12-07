@@ -22,7 +22,7 @@ public abstract class TutorialProgram {
 	}
 	
 	// Load a shader of the type type from the file sourceFile into OpenGL
-	public int loadShader(String sourceFile, int shaderType) {
+	protected int loadShader(String sourceFile, int shaderType) {
 		int shaderId = glCreateShader(shaderType);
 		glShaderSource(shaderId, readFromFile(sourceFile));
 		
@@ -32,7 +32,7 @@ public abstract class TutorialProgram {
 	}
 	
 	// Bind multiple shaders to a program
-	public int createProgram(int... shaderIds) {
+	protected int createProgram(int... shaderIds) {
 		int programId = glCreateProgram();
 		
 		for(int i = 0; i < shaderIds.length; i++) {
