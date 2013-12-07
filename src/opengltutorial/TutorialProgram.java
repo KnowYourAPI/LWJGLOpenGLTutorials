@@ -8,6 +8,8 @@ import static org.lwjgl.opengl.GL20.glDeleteShader;
 import static org.lwjgl.opengl.GL20.glDetachShader;
 import static org.lwjgl.opengl.GL20.glLinkProgram;
 import static org.lwjgl.opengl.GL20.glShaderSource;
+import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
+import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,7 +24,16 @@ public abstract class TutorialProgram {
 	}
 	
 	// Load a shader of the type type from the file sourceFile into OpenGL
-	protected int loadShader(String sourceFile, int shaderType) {
+	protected int loadShader(String sourceFile) {
+		int shaderType;
+		
+		String[] splitFile = sourceFile.split("\\.");
+		switch(splitFile[splitFile.length-1]) {
+			case "vert": shaderType = GL_VERTEX_SHADER; break;
+			case "frag": shaderType = GL_FRAGMENT_SHADER; break;
+			default: shaderType = -1;
+		}
+		
 		int shaderId = glCreateShader(shaderType);
 		glShaderSource(shaderId, readFromFile(sourceFile));
 		
