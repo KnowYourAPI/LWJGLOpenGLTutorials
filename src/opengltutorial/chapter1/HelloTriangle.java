@@ -93,24 +93,24 @@ public class HelloTriangle extends TutorialProgram {
 	
 	public void display() {
 		
-			if(Display.wasResized())
-				resize();
+		if(Display.wasResized())
+			resize();
 
-			glClearColor(0, 0, 0, 0);
-			glClear(GL_COLOR_BUFFER_BIT);
-			
-			glUseProgram(program);
-			
-			glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, 0);
-			
-			glDrawArrays(GL_TRIANGLES, 0, 3);
-			
-			glDisableVertexAttribArray(0);
-			glUseProgram(0);
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		glUseProgram(program);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, 0);
+		
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+		glDisableVertexAttribArray(0);
+		glUseProgram(0);
 
-			Display.update(); // calls (among other things) swapBuffers()
+		Display.update(); // calls (among other things) swapBuffers()
 	}
 	
 	public void resize() {
