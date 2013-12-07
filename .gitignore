@@ -5,9 +5,7 @@
 .project
 .settings/
 bin/
-natives/
 
 # Package Files #
-*.jar
 *.war
 *.ear
