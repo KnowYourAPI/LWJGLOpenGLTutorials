@@ -24,7 +24,7 @@ public class HelloQuad extends TutorialProgram {
 	
 	public HelloQuad() {
 		try {
-			Display.setDisplayMode(new DisplayMode(600,600));
+			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
 			Display.setTitle("Hello Quad!");
 			Display.create();
@@ -62,8 +62,8 @@ public class HelloQuad extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("vertex.glsl", GL_VERTEX_SHADER);		
-		int fragmentShader = loadShader("fragment.glsl", GL_FRAGMENT_SHADER);
+		int vertexShader = loadShader("vertex.vert");		
+		int fragmentShader = loadShader("fragment.frag");
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		

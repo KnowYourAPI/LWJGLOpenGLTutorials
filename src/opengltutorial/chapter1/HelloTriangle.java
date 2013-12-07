@@ -21,7 +21,7 @@ public class HelloTriangle extends TutorialProgram {
 	
 	public HelloTriangle() {
 		try {
-			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
 			Display.setTitle("Hello Triangle!");
 			Display.create();
@@ -58,8 +58,8 @@ public class HelloTriangle extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("vertex.glsl", GL_VERTEX_SHADER);		
-		int fragmentShader = loadShader("fragment.glsl", GL_FRAGMENT_SHADER);
+		int vertexShader = loadShader("vertex.vert");		
+		int fragmentShader = loadShader("fragment.frag");
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		
