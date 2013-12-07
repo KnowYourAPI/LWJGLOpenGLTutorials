@@ -37,7 +37,7 @@ public class VertexColors extends TutorialProgram {
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
-			Display.setTitle("Hello Triangle!");
+			Display.setTitle("Vertex Colors");
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();

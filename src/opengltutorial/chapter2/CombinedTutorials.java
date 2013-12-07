@@ -40,7 +40,7 @@ public class CombinedTutorials extends TutorialProgram {
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
-			Display.setTitle("Hello Triangle!");
+			Display.setTitle("Combinded Tutorials");
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();

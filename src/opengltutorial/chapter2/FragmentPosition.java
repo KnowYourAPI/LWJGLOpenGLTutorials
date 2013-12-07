@@ -37,7 +37,7 @@ public class FragmentPosition extends TutorialProgram {
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
-			Display.setTitle("Hello Triangle!");
+			Display.setTitle("Fragment Position");
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
