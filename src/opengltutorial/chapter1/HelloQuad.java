@@ -109,6 +109,7 @@ public class HelloQuad extends TutorialProgram {
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, 0);
 		
+		// Change the draw mode to GL_QUAD and tell openGL that we now have 4 vertices in our array
 		glDrawArrays(GL_QUADS, 0, 4);
 		
 		glDisableVertexAttribArray(0);
