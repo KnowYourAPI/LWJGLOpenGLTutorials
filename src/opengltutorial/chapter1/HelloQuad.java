@@ -28,6 +28,11 @@ public class HelloQuad extends TutorialProgram {
 			Display.setResizable(true);
 			Display.setTitle("Hello Quad!");
 			Display.create();
+			
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			glOrtho(0, 600, 0, 600, 0, 1);
+			glMatrixMode(GL_MODELVIEW);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -62,28 +67,10 @@ public class HelloQuad extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, readFromFile("vertex.glsl"));
+		int vertexShader = loadShader("vertex.glsl", GL_VERTEX_SHADER);		
+		int fragmentShader = loadShader("fragment.glsl", GL_FRAGMENT_SHADER);
 		
-		glCompileShader(vertexShader);
-		
-		int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, readFromFile("fragment.glsl"));
-		
-		glCompileShader(fragmentShader);
-		
-		int program = glCreateProgram();
-		
-		glAttachShader(program, vertexShader);
-		glAttachShader(program, fragmentShader);
-		
-		glLinkProgram(program);
-		
-		glDetachShader(program, vertexShader);
-		glDetachShader(program, fragmentShader);
-		
-		glDeleteShader(vertexShader);
-		glDeleteShader(fragmentShader);
+		int program = createProgram(vertexShader, fragmentShader);
 		
 		return program;
 	}
