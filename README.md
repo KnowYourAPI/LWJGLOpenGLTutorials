@@ -1,7 +1,7 @@
 LWJGLOpenGLTutorials
 ====================
 
-The arcsynthesis.org http://www.arcsynthesis.org/gltut/) OpenGL tutorials in Java using LWJGL as an OpenGL wrapper.
+The arcsynthesis.org (http://www.arcsynthesis.org/gltut/) OpenGL tutorials in Java using LWJGL as an OpenGL wrapper.
 
 Dependencies:
 
