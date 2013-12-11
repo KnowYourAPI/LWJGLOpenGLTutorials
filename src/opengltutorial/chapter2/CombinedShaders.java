@@ -16,8 +16,6 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 import java.nio.FloatBuffer;
 
@@ -40,7 +38,7 @@ public class CombinedShaders extends TutorialProgram {
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
-			Display.setTitle("Combinded Tutorials");
+			Display.setTitle("Combinded Shaders");
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -52,9 +50,9 @@ public class CombinedShaders extends TutorialProgram {
 	}
 	
 	private int initializeVertexBuffer() {
-		int positionBufferObject = glGenBuffers();
+		int vertexBufferObject = glGenBuffers();
 		
-		glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 		
 		final float[] vertexDataAry = new float[] {
 				0.0f, 0.5f, 0.0f, 1.0f,
@@ -71,9 +69,7 @@ public class CombinedShaders extends TutorialProgram {
 		glBufferData(GL_ARRAY_BUFFER, vertexData, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		
-		glBindVertexArray(glGenVertexArrays());
-		
-		return positionBufferObject;
+		return vertexBufferObject;
 	}
 	
 	private int initializeProgram() {
