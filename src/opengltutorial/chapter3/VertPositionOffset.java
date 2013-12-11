@@ -11,12 +11,13 @@ import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL15.glBindBuffer;
 import static org.lwjgl.opengl.GL15.glBufferData;
-import static org.lwjgl.opengl.GL15.glBufferSubData;
 import static org.lwjgl.opengl.GL15.glGenBuffers;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glUseProgram;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import static org.lwjgl.opengl.GL20.glGetUniformLocation;
+import static org.lwjgl.opengl.GL20.glUniform2f;
 
 import java.nio.FloatBuffer;
 
@@ -28,14 +29,13 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 
-public class CpuPositionOffset extends TutorialProgram {
+public class VertPositionOffset extends TutorialProgram {
 	
 	private int positionBufferObject;
 	private int program;
+	private int offsetLocation;
 	
 	private long elapsedTime;
-	
-	private FloatBuffer newData;
 	
 	private final float[] vertexDataAry = new float[] {
 		0.25f, 0.25f, 0.0f, 1.0f,
@@ -43,13 +43,13 @@ public class CpuPositionOffset extends TutorialProgram {
 		-0.25f, -0.25f, 0.0f, 1.0f,
 	}; 
 	
-	public CpuPositionOffset() {
+	public VertPositionOffset() {
 		elapsedTime = 0;
-		newData = BufferUtils.createFloatBuffer(vertexDataAry.length);
+
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
-			Display.setTitle("CPU Position Offset");
+			Display.setTitle("Vertex Shader Position Offset");
 			
 			Display.create();
 		} catch (LWJGLException e) {
@@ -77,10 +77,12 @@ public class CpuPositionOffset extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("shaders/Standard.vert");		
+		int vertexShader = loadShader("shaders/PositionOffset.vert");		
 		int fragmentShader = loadShader("shaders/Standard.frag"); 
 		
 		int program = createProgram(vertexShader, fragmentShader);
+		
+		offsetLocation = glGetUniformLocation(program, "offset");
 		
 		return program;
 	}
@@ -106,12 +108,13 @@ public class CpuPositionOffset extends TutorialProgram {
 		float[] offsets = computePositionOffsets(0, 0, deltaTime);
 		float xOffset = offsets[0];
 		float yOffset = offsets[1];
-		adjustVertexData(xOffset, yOffset);
 
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
 		glUseProgram(program);
+		
+		glUniform2f(offsetLocation, xOffset, yOffset);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
 		glEnableVertexAttribArray(0);
@@ -141,27 +144,9 @@ public class CpuPositionOffset extends TutorialProgram {
 		return new float[] { newXOffset, newYOffset };
 	}
 	
-	public void adjustVertexData(float xOffset, float yOffset) {
-		
-		newData.clear();
-		
-		for(int i = 0; i < 12; i += 4) {
-			newData.put(vertexDataAry[i] + xOffset);		// new x
-			newData.put(vertexDataAry[i + 1] + yOffset);	// new y
-			newData.put(0);									// new z
-			newData.put(1);									// new w (clip space value)
-		}
-		
-		newData.flip();
-		
-		glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, newData);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);		
-	}
-	
 	public static void main(String[] args) {
-		CpuPositionOffset cpuPositionOffset = new CpuPositionOffset();
-		cpuPositionOffset.execute();
+		VertPositionOffset vertPositionOffset = new VertPositionOffset();
+		vertPositionOffset.execute();
 	}
 
 }
