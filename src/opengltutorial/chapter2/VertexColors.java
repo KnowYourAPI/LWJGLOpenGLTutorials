@@ -49,9 +49,9 @@ public class VertexColors extends TutorialProgram {
 	}
 	
 	private int initializeVertexBuffer() {
-		int positionBufferObject = glGenBuffers();
+		int vertexBufferObject = glGenBuffers();
 		
-		glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
 		
 		final float[] vertexDataAry = new float[] {
 				0.0f, 0.5f, 0.0f, 1.0f,
@@ -70,7 +70,7 @@ public class VertexColors extends TutorialProgram {
 		
 		glBindVertexArray(glGenVertexArrays());
 		
-		return positionBufferObject;
+		return vertexBufferObject;
 	}
 	
 	private int initializeProgram() {
