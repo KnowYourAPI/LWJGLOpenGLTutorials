@@ -31,12 +31,12 @@ import org.lwjgl.opengl.DisplayMode;
 
 //This class combines the shaders of the previous two tutorials
 // to achieve a new effect
-public class CombinedTutorials extends TutorialProgram {
+public class CombinedShaders extends TutorialProgram {
 	
 	private int vertexBufferObject;
 	private int program;
 	
-	public CombinedTutorials() {
+	public CombinedShaders() {
 		try {
 			Display.setDisplayMode(new DisplayMode(500,500));
 			Display.setResizable(true);
@@ -78,8 +78,8 @@ public class CombinedTutorials extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("CombinedTutorials.vert");		
-		int fragmentShader = loadShader("CombinedTutorials.frag"); 
+		int vertexShader = loadShader("CombinedShaders.vert");		
+		int fragmentShader = loadShader("CombinedShaders.frag"); 
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		
@@ -123,8 +123,8 @@ public class CombinedTutorials extends TutorialProgram {
 	}
 	
 	public static void main(String[] argv) {
-		CombinedTutorials combinedTutorials = new CombinedTutorials();
-		combinedTutorials.execute();
+		CombinedShaders combinedShaders = new CombinedShaders();
+		combinedShaders.execute();
 	}
 }
 
