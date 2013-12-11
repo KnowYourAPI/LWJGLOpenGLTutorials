@@ -74,8 +74,8 @@ public class CombinedShaders extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("CombinedShaders.vert");		
-		int fragmentShader = loadShader("CombinedShaders.frag"); 
+		int vertexShader = loadShader("shaders/CombinedShaders.vert");		
+		int fragmentShader = loadShader("shaders/CombinedShaders.frag"); 
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		

@@ -72,8 +72,8 @@ public class FragmentPosition extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("FragmentPosition.vert");		
-		int fragmentShader = loadShader("FragmentPosition.frag"); 
+		int vertexShader = loadShader("shaders/FragmentPosition.vert");		
+		int fragmentShader = loadShader("shaders/FragmentPosition.frag"); 
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		

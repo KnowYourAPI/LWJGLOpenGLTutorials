@@ -71,8 +71,8 @@ public class VertexColors extends TutorialProgram {
 	
 	private int initializeProgram() {
 		
-		int vertexShader = loadShader("VertexColors.vert");		
-		int fragmentShader = loadShader("VertexColors.frag"); 
+		int vertexShader = loadShader("shaders/VertexColors.vert");		
+		int fragmentShader = loadShader("shaders/VertexColors.frag"); 
 		
 		int program = createProgram(vertexShader, fragmentShader);
 		
